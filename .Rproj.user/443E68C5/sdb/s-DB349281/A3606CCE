@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(\"twitteR\")\nlibrary(\"ROAuth\")\n\n\n#all this info is obtained for the Twitter developer account:\n\nkey <- \"NIAfLMyCaJytEMQmKm1tuzaK6\"\n\nsecret <- \"jisoQf0XGTnVPiBEIKWic113vXe4NFSIbno5inR35R70Iot1gB\"\n\n\naccess_token_secret <- \"sbpw4MQj2sH79o4wMrg8nSdqh0G5nSOgV9Slf7EH9ACqS\"\n\naccess_token <- \"2431900465-sDi7vsC4vXIgqw6cajvZlmIEdwiduOwZCGhdUTI\"\n\n\nlibrary(\"httr\")\n\n#This function wraps the OAuth authentication handshake functions \n#from the httr package for a twitteR session.Sets up the OAuth credentials for a twitteR session\n\n#Note we nead to have proper internet connection to run this function\n\nsetup_twitter_oauth(key, secret, access_token, access_token_secret)\n\n#Get the 1000 scraps with the keyword Udemy\n\ntweets_sachin <- searchTwitter(\"#SachinTendulkar\", n=1000, lang=\"en\")\n\n\nlibrary(\"tm\")\n\n\ntweet_list <- sapply(tweets_sachin, function(x) x$getText())\n\n# Create a corpus for the tweets\n\ncorpus_tweets <- Corpus(VectorSource(tweet_list))\n\n# Convert the text into the lowercase\n\ncorpus_tweets <- tm_map(corpus_tweets, tolower)\n\n# Remove punctuation\n\ncorpus_tweets <- tm_map(corpus_tweets, removePunctuation)\n\n# Remove stopwords\n\ncorpus_tweets <- tm_map(corpus_tweets, function(x)removeWords(x, stopwords()))\n\n# Converting text into plain text document\n\ncorpus_tweets <- tm_map(corpus_tweets, PlainTextDocument)\n\nlibrary(\"wordcloud\")\n\n? wordcloud\n\nwordcloud(corpus_tweets, min.freq=5, scale=c(5,1), colors=brewer.pal(9,\"Dark2\"),\n          random.color=F, max.word=50, random.order=F)\n\n#changing to a tdm\n\ncorpus_tweets <- TermDocumentMatrix(corpus_tweets)\n\n\n\n",
+    "created" : 1468411097036.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1910085110",
+    "id" : "A3606CCE",
+    "lastKnownWriteTime" : 1468412117,
+    "last_content_update" : 1468412117814,
+    "path" : "~/R/Twitter_Sentiment_Analysis/twitter_scrapping.R",
+    "project_path" : "twitter_scrapping.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
