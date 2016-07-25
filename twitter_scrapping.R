@@ -68,8 +68,16 @@ library("RColorBrewer")
 
 ? wordcloud
 
-wordcloud(corpus_tweets, min.freq=5, scale=c(4,1), colors=brewer.pal(9,"Dark2"),
+w <- wordcloud(corpus_tweets, min.freq=5, scale=c(4,1), colors=brewer.pal(9,"Dark2"),
           rot.per=0.5, random.color=F, max.word=50, random.order=F)
+
+# Saving the workcloud
+
+print(w)
+
+dev.copy(png, filename='word_cloud_sachin.png')
+
+dev.off()
 
 #changing to a tdm
 
@@ -89,10 +97,17 @@ plot(fit)
 
 #-to calculate a certain number of groups
 
-cutree(fit, k=4)
+cutree(fit, k=6)
 
 #-we can even color the 4 groups and plot them
 
 
-rect.hclust(fit, k=4, border="red")
+dendogram <- rect.hclust(fit, k=6, border="red")
+
+# Saving the debdogram in the working directory
+
+
+
+
+
 
