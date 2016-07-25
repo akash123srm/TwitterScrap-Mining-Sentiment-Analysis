@@ -24,10 +24,10 @@ library("twitteR")
 
 #-tweets for companies - may not get the full 900
 
-bayertweets = searchTwitter("#bayer", n=900, lang="en")
-pfizertweets = searchTwitter("#pfizer", n=900, lang="en")
-rochetweets = searchTwitter("#roche", n=900, lang="en")
-novartistweets = searchTwitter("#novartis", n=900, lang="en")
+bayertweets = searchTwitter("#bayer", n=200, lang="en")
+pfizertweets = searchTwitter("#pfizer", n=200, lang="en")
+rochetweets = searchTwitter("#roche", n=200, lang="en")
+novartistweets = searchTwitter("#novartis", n=200, lang="en")
 
 #get text from the tweets
 
@@ -67,7 +67,7 @@ dev.off()
 library("lattice")
 
 
-h <- histogram(data=scores, ~score|country, main="Sentiment Analysis of 4 pharma companies", xlab="", sub="Sentiment Score")
+h <- histogram(data=scores, ~score|company, main="Sentiment Analysis of 4 pharma companies", xlab="", sub="Sentiment Score")
 
 # Saving the histogram to the working directory
 
